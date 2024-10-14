@@ -3,29 +3,29 @@ import chalk from "chalk";
 
 console.log(chalk.blue("hello world"));
 
-// const thenable = {
-//   then: function (onFulfilled) {
-//     setTimeout(() => onFulfilled(42, 1000));
-//   },
-// };
-// async function main() {
-//   await thenable;
-//   console.log("Hi there");
-// }
+const thenable = {
+  then: function (onFulfilled) {
+    setTimeout(() => onFulfilled(42, 1000));
+  },
+};
+async function useThenable() {
+  await thenable;
+  console.log("Hi there");
+}
 
-// main();
+useThenable();
 
-// const Promise = {
-//   then: function (onFulfilled) {
-//     setTimeout(() => onFulfilled(42, 1000));
-//   },
-// };
+const Promise = {
+  then: function (onFulfilled) {
+    setTimeout(() => onFulfilled(42, 1000));
+  },
+};
 
-// async function name() {
-//   await Promise;
-//   console.log("Hello world");
-// }
-// name();
+async function usePromise() {
+  await Promise;
+  console.log("Hello world");
+}
+usePromise();
 
 function main(fileName) {
   fs.readFile(fileName, "utf-8", function (err, data) {
@@ -41,3 +41,5 @@ function main(fileName) {
 }
 
 main("a.txt");
+
+//sudo vi /etc/hosts---- Domain name and IP
