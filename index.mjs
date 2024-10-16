@@ -1,45 +1,19 @@
-import fs from "fs";
-import chalk from "chalk";
+import express from "express";
 
-console.log(chalk.blue("hello world"));
+const app = express();
 
-const thenable = {
-  then: function (onFulfilled) {
-    setTimeout(() => onFulfilled(42, 1000));
-  },
-};
-async function useThenable() {
-  await thenable;
-  console.log("Hi there");
+function sum(n) {
+  let ans = 0;
+  for (let i = 1; i <= n; i++) {
+    ans = ans + i;
+  }
+  return ans;
 }
 
-useThenable();
+app.get("/", function (req, res) {
+  const n = req.query.n;
+  const ans = sum(n);
+  res.send("HI your ans is " + " " + ans);
+});
 
-const Promise = {
-  then: function (onFulfilled) {
-    setTimeout(() => onFulfilled(42, 1000));
-  },
-};
-
-async function usePromise() {
-  await Promise;
-  console.log("Hello world");
-}
-usePromise();
-
-function main(fileName) {
-  fs.readFile(fileName, "utf-8", function (err, data) {
-    let total = 0;
-    for (let i = 0; i < data.length; i++) {
-      if (data[i] === " ") {
-        total++;
-      }
-    }
-
-    console.log(total);
-  });
-}
-
-main("a.txt");
-
-//sudo vi /etc/hosts---- Domain name and IP
+app.listen(3000);
