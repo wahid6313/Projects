@@ -1,4 +1,5 @@
 import express from "express";
+import jwt from "jsonwebtoken";
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.get("/", function (req, res) {
     noOfhealthyKidneys,
     noOfUnhealthyKidneys,
   });
+
   // const n = req.query.n;
   // const ans = sum(n);
   // res.send("HI your ans is " + " " + ans);
@@ -54,5 +56,14 @@ app.post("/", function (req, res) {
     msg: "done",
   });
 });
+
+const value = {
+  name: "harkirat",
+  accountNumber: 123123123,
+};
+
+// jwt
+const token = jwt.sign(value, "secret");
+console.log(token);
 
 app.listen(3000);
